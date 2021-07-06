@@ -1,12 +1,17 @@
-import './App.css';
 import React, { useState, useEffect } from 'react';
 import data from './data.json'
 import { Row, Col } from 'react-bootstrap'
 import CardBody from './CardBody'
 import { Button } from 'react-bootstrap'
+import ModalUpdate from './ModalUpdate';
 
 function App() {
   const [clothes, setClothes] = useState(data)
+  const [modalShow, setModalShow] = useState(false);
+  function setModal(bol, clothe){
+    ModalUpdate(clothe)
+    setModalShow(true)
+  }
   function deleteClothe(event) {
     let newClothe = clothes.filter((el) => {
       if (!(el.id === event)) {
@@ -14,7 +19,6 @@ function App() {
       }
     })
     setClothes(newClothe)
-    console.log(newClothe)
   }
 
   function AddNewClothe() {
@@ -49,7 +53,7 @@ function App() {
             clothes.map((e, i) => {
               return (
                 <Col key={i} sm={12} lg={4} style={{ padding: '4rem' }}>
-                  <CardBody data={e} deletefunc={deleteClothe} />
+                  <CardBody data={e} deletefunc={deleteClothe} setModal={setModal}/>
                 </Col>
               )
             })
@@ -59,6 +63,11 @@ function App() {
           <Button variant="success" onClick={AddNewClothe}>Add New</Button>
         </Col>
       </div>
+
+      <ModalUpdate
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </div>
   );
 }

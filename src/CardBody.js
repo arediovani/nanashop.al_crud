@@ -1,12 +1,12 @@
 import React from 'react'
-import {Card, Button, CloseButton} from 'react-bootstrap'
+import { Card, Button, CloseButton } from 'react-bootstrap'
 
-const CardBody = (props) =>{
+const CardBody = (props) => {
     let clothe = props.data
-    return(
-            <Card style={{ width: 'auto' }}>
-              <Card.Body>
-                  <CloseButton onClick={()=>props.deletefunc(clothe.id)}/>
+    return (
+        <Card style={{ width: 'auto' }}>
+            <Card.Body>
+                <CloseButton onClick={() => props.deletefunc(clothe.id)} />
                 <Card.Title>{clothe.name}</Card.Title>
                 <Card.Text>
                     Description: {clothe.description}
@@ -23,9 +23,11 @@ const CardBody = (props) =>{
                 <Card.Text>
                     Tags: {clothe.category}
                 </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
+                <Button variant="primary" onClick={() => props.setModal(true,clothe)}>
+                 Edit    
+                </Button>
+            </Card.Body>
+        </Card>
     )
 }
 export default CardBody
