@@ -7,9 +7,16 @@ import { Button } from 'react-bootstrap'
 
 function App() {
   const [clothes, setClothes] = useState(data)
-  function deleteClothe (e){
-    console.log('delete item id ' + e)
+  function deleteClothe(event) {
+    let newClothe = clothes.filter((el) => {
+      if (!(el.id === event)) {
+        return true
+      }
+    })
+    setClothes(newClothe)
+    console.log(newClothe)
   }
+
   function AddNewClothe() {
     let emptyObj = {
       "id": clothes.length + 1,
@@ -21,18 +28,17 @@ function App() {
       "pictures": [
       ],
       "size": [
-      "mollit",
-      "mollit"
+        "mollit",
+        "mollit"
       ],
       "tags": [
-      "mollit",
-      "mollit"
+        "mollit",
+        "mollit"
       ]
     }
-    setClothes(clothes=>[...clothes,emptyObj])
+    setClothes(clothes => [...clothes, emptyObj])
   }
   useEffect(() => {
-    console.log("USE EFFECT")
 
   });
   return (
@@ -43,13 +49,13 @@ function App() {
             clothes.map((e, i) => {
               return (
                 <Col key={i} sm={12} lg={4} style={{ padding: '4rem' }}>
-                  <CardBody props={e} deleteClothe={deleteClothe} />
+                  <CardBody data={e} deletefunc={deleteClothe} />
                 </Col>
               )
             })
           }
         </Row>
-        <Col lg={4} style={{ widht: 'auto' }}>
+        <Col lg={4} style={{ widh: 'auto' }}>
           <Button variant="success" onClick={AddNewClothe}>Add New</Button>
         </Col>
       </div>

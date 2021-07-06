@@ -1,12 +1,12 @@
 import React from 'react'
 import {Card, Button, CloseButton} from 'react-bootstrap'
 
-const CardBody = (data, {deleteClothe}) =>{
-    let clothe = data.props
+const CardBody = (props) =>{
+    let clothe = props.data
     return(
             <Card style={{ width: 'auto' }}>
               <Card.Body>
-                  <CloseButton onClick={deleteClothe}/>
+                  <CloseButton onClick={()=>props.deletefunc(clothe.id)}/>
                 <Card.Title>{clothe.name}</Card.Title>
                 <Card.Text>
                     Description: {clothe.description}
