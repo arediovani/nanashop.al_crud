@@ -4,12 +4,27 @@ import { Row, Col } from 'react-bootstrap'
 import CardBody from './CardBody'
 import { Button } from 'react-bootstrap'
 import ModalUpdate from './ModalUpdate';
+import categorydata from './category.json'
 
 function App() {
   const [clothes, setClothes] = useState(data)
   const [modalShow, setModalShow] = useState(false);
-  function setModal(bol, clothe){
-    ModalUpdate(clothe)
+  const [selectedClothe, setselectedClothe] = useState({})
+  const [categories] = useState(categorydata)
+  function updatefunc(updatedClothe) {
+    console.log(updatedClothe)
+    let newClohte = clothes.map((el) => {
+      if (clothes.id === el.id) {
+        return updatedClothe
+      } else {
+        return el
+      }
+    })
+    setClothes(newClohte)
+
+  }
+  function setModal(bol, clothe) {
+    setselectedClothe(clothe)
     setModalShow(true)
   }
   function deleteClothe(event) {
@@ -24,20 +39,16 @@ function App() {
   function AddNewClothe() {
     let emptyObj = {
       "id": clothes.length + 1,
-      "name": "",
+      "name": "New Clothe",
       "description": "",
-      "price": 0,
+      "price": 100,
       "color": "",
       "category": "",
       "pictures": [
       ],
       "size": [
-        "mollit",
-        "mollit"
       ],
       "tags": [
-        "mollit",
-        "mollit"
       ]
     }
     setClothes(clothes => [...clothes, emptyObj])
@@ -53,7 +64,7 @@ function App() {
             clothes.map((e, i) => {
               return (
                 <Col key={i} sm={12} lg={4} style={{ padding: '4rem' }}>
-                  <CardBody data={e} deletefunc={deleteClothe} setModal={setModal}/>
+                  <CardBody data={e} deletefunc={deleteClothe} setModal={setModal} />
                 </Col>
               )
             })
@@ -67,6 +78,9 @@ function App() {
       <ModalUpdate
         show={modalShow}
         onHide={() => setModalShow(false)}
+        clothe={selectedClothe}
+        categories={categories}
+        updateCloothe={updatefunc}
       />
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Button, CloseButton } from 'react-bootstrap'
+import { Card, Button, CloseButton, Image } from 'react-bootstrap'
 
 const CardBody = (props) => {
     let clothe = props.data
@@ -21,10 +21,18 @@ const CardBody = (props) => {
                     Category: {clothe.category}
                 </Card.Text>
                 <Card.Text>
-                    Tags: {clothe.category}
+                    Tags: {clothe.tags}
                 </Card.Text>
-                <Button variant="primary" onClick={() => props.setModal(true,clothe)}>
-                 Edit    
+                <Card.Text>
+                    Pictures
+                    {
+                        clothe.pictures.map((el,index)=>{
+                        return <Image src={el} alt={index}></Image>
+                        })
+                    }
+                </Card.Text>
+                <Button variant="primary" onClick={() => props.setModal(true, clothe)}>
+                    Edit
                 </Button>
             </Card.Body>
         </Card>
