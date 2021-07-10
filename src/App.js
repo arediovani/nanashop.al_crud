@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import data from './data.json'
+import clothesdata from './data.json'
 import { Row, Col } from 'react-bootstrap'
 import CardBody from './CardBody'
 import { Button } from 'react-bootstrap'
@@ -7,23 +7,30 @@ import ModalUpdate from './ModalUpdate';
 import categorydata from './category.json'
 
 function App() {
-  const [clothes, setClothes] = useState(data)
+  const [clothes, setClothes] = useState(clothesdata)
   const [modalShow, setModalShow] = useState(false);
   const [selectedClothe, setselectedClothe] = useState({})
+  const [updatedselectedClothe, setudpatedslectedClothe] = useState({})
   const [categories] = useState(categorydata)
-  function updatefunc(updatedClothe) {
-    console.log(updatedClothe)
-    let newClohte = clothes.map((el) => {
-      if (clothes.id === el.id) {
-        return updatedClothe
-      } else {
-        return el
-      }
-    })
-    setClothes(newClohte)
+  useEffect(() => {
+  }, [clothes])
 
+  const updatefunc = (event, bol, newClothe) => {
+    if (newClothe) {
+      let newClohte = clothes.map((el) => {
+        console.log(newClothe)
+        if (newClothe.id === el.id) {
+          return newClothe
+        } else {
+          return el
+        }
+      })
+      setClothes(newClohte)
+    }
+    setModalShow(bol)
   }
   function setModal(bol, clothe) {
+
     setselectedClothe(clothe)
     setModalShow(true)
   }
@@ -53,9 +60,7 @@ function App() {
     }
     setClothes(clothes => [...clothes, emptyObj])
   }
-  useEffect(() => {
-
-  });
+  var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(clothes));
   return (
     <div className="App">
       <div className="container">
@@ -72,15 +77,17 @@ function App() {
         </Row>
         <Col lg={4} style={{ widh: 'auto' }}>
           <Button variant="success" onClick={AddNewClothe}>Add New</Button>
+          <Button variant="info"><a href={`data:${data}`} download="data.json">download JSON</a></Button>
+          
+         
         </Col>
       </div>
 
       <ModalUpdate
         show={modalShow}
-        onHide={() => setModalShow(false)}
+        onHide={updatefunc}
         clothe={selectedClothe}
         categories={categories}
-        updateCloothe={updatefunc}
       />
     </div>
   );

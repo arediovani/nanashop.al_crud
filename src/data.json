@@ -1,2 +1,1 @@
-[
-]
+[{"id":1,"name":"Xhinse","description":"Xhinse moderne","price":1900,"color":"blu","category":"xhinse","pictures":["https://i.imgur.com/J8D8Sy4.png"],"size":[],"tags":["xhinse","veshje","pantollona","moderne"]},{"id":2,"name":"Pantollona Blue dhe Zeze","description":"Pnatollona verore me ngjyre zeze dhe bezhe","price":1000,"color":"blu","category":"pantollona_shkurtra","pictures":["https://i.imgur.com/ETMzfJD.png","https://i.imgur.com/3Bmky1C.png"],"size":["L"],"tags":["pantollona"]},{"id":3,"name":"Bluze me lule","description":"bluze moderne me lule ngjyre te verdhe per vere","price":0,"color":"blu","category":"bluze","pictures":["https://i.imgur.com/iswa6xB.png"],"size":["M"],"tags":["bluze","blu","cante","koleksion"]}]

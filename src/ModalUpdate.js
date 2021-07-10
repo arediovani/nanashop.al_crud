@@ -7,22 +7,15 @@ import Select from 'react-select'
 const ModalUpdate = (props) => {
   let clothe = props.clothe
   let tempClothe = {
-    "id": 0,
-    "name": "",
-    "description": "",
-    "price": 0,
-    "color": "",
-    "category": "",
-    "pictures": [
-    ],
-    "size": [
-    ],
-    "tags": [
-    ]
-  }
-  const save = () => {
-    console.log('save')
-    props.updateCloothe(tempClothe);
+    "id": clothe.id,
+    "name": clothe.name,
+    "description": clothe.description,
+    "price": clothe.price,
+    "color": clothe.color,
+    "category": clothe.category,
+    "pictures": clothe.pictures,
+    "size": clothe.size,
+    "tags":clothe.tags 
   }
   const categoryChange = (e) => {
     tempClothe.category = e.value
@@ -101,18 +94,16 @@ const ModalUpdate = (props) => {
           </Form.Group>
           <Form.Group onChange={(event) => onValueChange(event, "pictures")} className="mb-3" >
             <Form.Label>Pictures:</Form.Label>
-            <Form.Control defaultValue={clothe.tags} />
+            <Form.Control defaultValue={clothe.pictures} />
           </Form.Group>
-          <Form.Group onChange={(event) => onValueChange(event, "sizes")} className="mb-3" >
+          <Form.Group onChange={(event) => onValueChange(event, "size")} className="mb-3" >
             <Form.Label>Sizes:</Form.Label>
             <Form.Control defaultValue={clothe.size} />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-        <Button onClick={() => save} variant="success">Save</Button>
-
+         <Button variant="success" onClick={(event)=>props.onHide(event,false,tempClothe)}>SAVE</Button>
       </Modal.Footer>
     </Modal>
   );
