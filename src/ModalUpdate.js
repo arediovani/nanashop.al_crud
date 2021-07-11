@@ -41,7 +41,7 @@ const ModalUpdate = (props) => {
         tempClothe.size = event.target.value.replaceAll(' ', '').split(',')
         break;
       case "pictures":
-        tempClothe.pictures = event.target.value.replaceAll(' ', '').split(',')
+        tempClothe.pictures = event.target.value.replaceAll(' ', '').split('\n')
         break;
       case "tags":
         tempClothe.tags = event.target.value.replaceAll(' ', '').split(',')

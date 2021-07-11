@@ -27,7 +27,7 @@ const CardBody = (props) => {
                     Pictures
                     {
                         clothe.pictures.map((el,index)=>{
-                        return <Image src={el} alt={index}></Image>
+                        return <Image className="img-fluid" src={el} alt={index}></Image>
                         })
                     }
                 </Card.Text>
