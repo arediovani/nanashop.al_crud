@@ -10,7 +10,6 @@ function App() {
   const [clothes, setClothes] = useState(clothesdata)
   const [modalShow, setModalShow] = useState(false);
   const [selectedClothe, setselectedClothe] = useState({})
-  const [updatedselectedClothe, setudpatedslectedClothe] = useState({})
   const [categories] = useState(categorydata)
   useEffect(() => {
   }, [clothes])
@@ -78,8 +77,6 @@ function App() {
         <Col lg={4} style={{ widh: 'auto' }}>
           <Button variant="success" onClick={AddNewClothe}>Add New</Button>
           <Button variant="info"><a href={`data:${data}`} download="data.json">download JSON</a></Button>
-          
-         
         </Col>
       </div>
 

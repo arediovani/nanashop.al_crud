@@ -82,6 +82,7 @@ const ModalUpdate = (props) => {
           </Form.Group>
           <Form.Label>Category</Form.Label>
           <Select
+            defaultValue={{ label: clothe.category, value: clothe.category }} 
             placeholder="Lloji i veshjes"
             name="categories"
             options={props.categories}
@@ -94,7 +95,7 @@ const ModalUpdate = (props) => {
           </Form.Group>
           <Form.Group onChange={(event) => onValueChange(event, "pictures")} className="mb-3" >
             <Form.Label>Pictures:</Form.Label>
-            <Form.Control defaultValue={clothe.pictures} />
+            <Form.Control defaultValue={clothe.pictures} as="textarea"/>
           </Form.Group>
           <Form.Group onChange={(event) => onValueChange(event, "size")} className="mb-3" >
             <Form.Label>Sizes:</Form.Label>
